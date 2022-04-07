@@ -1,7 +1,7 @@
 const computerPlay = () => {
-    const actions = ['Rock', 'Paper', 'Scissors'];
+    const actions = ['rock', 'paper', 'scissors'];
 
-    const random = Math.floor(Math.random() * 3) + 1;
+    const random = Math.floor(Math.random() * 3);
 
     return actions[random];
 };
