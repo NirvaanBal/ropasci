@@ -28,3 +28,14 @@ function playRound(playerSelection, computerSelection) {
         return 'You Win! Scissors beat Rock';
     }
 }
+
+function game() {
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = prompt('Enter your choice...');
+        const computerSelection = computerPlay();
+
+        console.log(playRound(playerSelection, computerSelection));
+    }
+}
+
+game();
