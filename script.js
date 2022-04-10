@@ -27,15 +27,17 @@ function playRound(playerSelection, computerSelection) {
     ) {
         return 'You Win! Scissors beat Rock';
     }
+
+    return 'Play Again!!!';
 }
 
-function game() {
-    for (let i = 0; i < 5; i++) {
-        const playerSelection = prompt('Enter your choice...');
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        const playerSelection = e.target.dataset.value;
         const computerSelection = computerPlay();
 
         console.log(playRound(playerSelection, computerSelection));
-    }
-}
-
-game();
+    });
+});
