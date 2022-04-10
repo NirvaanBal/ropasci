@@ -8,39 +8,46 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
+    if (playerSelection === computerSelection) return 'tie';
+
     if (playerSelection === 'rock' && computerSelection === 'scissors') {
-        return 'You Win! Rock beats Scissors';
+        return true;
     } else if (playerSelection === 'rock' && computerSelection === 'paper') {
-        return 'You Lose! Paper beats Rocks';
+        return false;
     } else if (playerSelection === 'paper' && computerSelection === 'rock') {
-        return 'You Win! Paper beats Rock';
+        return true;
     } else if (
         playerSelection === 'paper' &&
         computerSelection === 'scissors'
     ) {
-        return 'You Lose! Scissors beat Paper';
+        return false;
     } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
-        return 'You Lose! Rock beats Scissors';
+        return false;
     } else if (
         playerSelection === 'scissors' &&
         computerSelection === 'paper'
     ) {
-        return 'You Win! Scissors beat Rock';
+        return true;
     }
-
-    return 'Play Again!!!';
 }
 
 const body = document.body;
 const buttons = document.querySelectorAll('button');
-const result = document.createElement('div');
+const announce = document.createElement('div');
 
 buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
         const playerSelection = e.target.dataset.value;
         const computerSelection = computerPlay();
+        const gamePlay = playRound(playerSelection, computerSelection);
 
-        result.textContent = playRound(playerSelection, computerSelection);
-        body.appendChild(result);
+        if (gamePlay === 'tie') return;
+        else if (gamePlay) {
+            announce.textContent = `You WIN! ${playerSelection} beat(s) ${computerSelection}`;
+        } else {
+            announce.textContent = `You LOSE! ${computerSelection} beat(s) ${playerSelection}`;
+        }
+
+        body.appendChild(announce);
     });
 });
