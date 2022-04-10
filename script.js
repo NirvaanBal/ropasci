@@ -31,13 +31,16 @@ function playRound(playerSelection, computerSelection) {
     return 'Play Again!!!';
 }
 
+const body = document.body;
 const buttons = document.querySelectorAll('button');
+const result = document.createElement('div');
 
 buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
         const playerSelection = e.target.dataset.value;
         const computerSelection = computerPlay();
 
-        console.log(playRound(playerSelection, computerSelection));
+        result.textContent = playRound(playerSelection, computerSelection);
+        body.appendChild(result);
     });
 });
